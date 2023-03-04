@@ -30,8 +30,15 @@ def unique(input_list):
 #fucntion name must be: flatten
 #input parameters: input_list
      
+def flatten(input_list):
 
+    result = []
 
+    for list in input_list:
+        for item in list:
+            result.append(item)
+
+    return result
      
 
 #Create a function that concatenates n lists
@@ -47,17 +54,13 @@ def merge_lists(*args):
         result.extend(arg)
 
     return result
-
-
      
-
 #Create a function that can reverse a list of tuples
 #example [(1,2),...] => [(2,1),...]
 #return type: list
 #fucntion name must be: reverse_tuples
 #input parameters: input_list
      
-
 def reverse_tuples(input_list):
 
     result = []
@@ -83,30 +86,37 @@ def remove_duplicates(input_list):
 #return type: list
 #function name must be: transpose
 #input parameters: input_list
-     
 
-
-     
+def transpose(input_list):
+    return [[row[i] for row in input_list] for i in range(len(input_list[0]))]
 
 #Create a function that can split a nested list into chunks
 #chunk size is given by parameter
 #return type: list
 #function name must be: split_into_chunks
 #input parameters: input_list,chunk_size
-     
+ 
+def split_into_chunks(input_list, chunk_size):
+    result = []
 
+    for i in range(0, len(input_list), chunk_size):
+        chunk = input_list[i:i+chunk_size]
+        result.append(chunk)
 
-     
+    return result
 
 #Create a function that can merge n dictionaries
 #return type: dictionary
 #function name must be: merge_dicts
-#input parameters: *dict
+#input parameters: *dict   
+
+def merge_dicts(*dict):
+
+    result = {}
+
+    for item in dict:
+        result.update(item)
      
-
-
-     
-
 #Create a function that receives a list of integers and sort them by parity
 #and returns with a dictionary like this: {"even":[...],"odd":[...]}
 #return type: dict
@@ -126,10 +136,7 @@ def by_parity(input_list):
         else:
             result["even"].append(item)
     
-    return result
-        
-
-     
+    return result       
 
 #Create a function that receives a dictionary like this: {"some_key":[1,2,3,4],"another_key":[1,2,3,4],....}
 #and return a dictionary like this : {"some_key":mean_of_values,"another_key":mean_of_values,....}
@@ -146,11 +153,7 @@ def mean_key_value(input_dict):
         mean = sum(value) / len(value)
         result[key] = mean
     
-    return result
-          
-
-
-     
+    return result            
 
 #If all the functions are created convert this notebook into a .py file and push to your repo
      
