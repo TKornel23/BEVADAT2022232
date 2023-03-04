@@ -5,7 +5,7 @@
 #input parameters: input_list,start_index,end_index
 
 def subset(input_list, start_index, end_index):
-    return input_list[start_index, end_index]
+    return input_list[start_index:end_index]
 
 
 #Create a function that returns every nth element of a list.
@@ -78,7 +78,7 @@ def reverse_tuples(input_list):
 #input parameters: input_list
      
 def remove_duplicates(input_list):
-    return set(input_list)
+    return [*set(input_list)]
 
      
 
@@ -116,6 +116,9 @@ def merge_dicts(*dict):
 
     for item in dict:
         result.update(item)
+    
+    return result
+        
      
 #Create a function that receives a list of integers and sort them by parity
 #and returns with a dictionary like this: {"even":[...],"odd":[...]}
@@ -149,11 +152,10 @@ def mean_key_value(input_dict):
 
     result = {}
 
-    for key, value in input_dict.items:
+    for key, value in input_dict.items():
         mean = sum(value) / len(value)
         result[key] = mean
     
     return result            
 
 #If all the functions are created convert this notebook into a .py file and push to your repo
-     
