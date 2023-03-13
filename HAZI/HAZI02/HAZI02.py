@@ -19,6 +19,8 @@ def column_swap(input):
     array = np.array(input)
     array[:, [0, 1]] = array[:, [1, 0]]
     return array
+
+print(column_swap([[1,2],[3,4]]))
 # %%
 # Készíts egy olyan függvényt ami összehasonlít két array-t és adjon vissza egy array-ben, hogy hol egyenlőek 
 # Pl Be: [7,8,9], [9,8,7] 
@@ -63,13 +65,14 @@ def encode_Y(input, classes):
 # Be:  [[0,1,0,0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]]
 # Ki:  [1, 2, 0, 3]
 # decode_Y()
-def decore_Y(input):
+def decode_Y(input):
     outarray = []
     arr = np.array(input)
     temp = arr.tolist()
     for x in temp:
         outarray.append(x.index(1))
     return np.array(outarray)
+
 # %%
 # Készíts egy olyan függvényt, ami képes kiértékelni egy neurális háló eredményét! Bemenetként egy listát és egy array-t és adja vissza azt az elemet, aminek a legnagyobb a valószínüsége(értéke) a listából.
 # Be: ['alma', 'körte', 'szilva'], [0.2, 0.2, 0.6]. # Az ['alma', 'körte', 'szilva'] egy lista!
@@ -83,7 +86,7 @@ def eval_classification(classes, preds):
 # Be: [1,2,3,4,5,6]
 # Ki: [-1,2,-1,4,-1,6]
 # repalce_odd_numbers()
-def repalce_odd_numbers(inputs):
+def replace_odd_numbers(inputs):
     arr = np.array(inputs)
     arr[0::2] = -1
     return arr
@@ -139,7 +142,7 @@ def list_days(date1, date2):
 # Írj egy fügvényt ami vissza adja az aktuális dátumot az alábbi formában: YYYY-MM-DD. Térjen vissza egy 'numpy.datetime64' típussal.
 # Be:
 # Ki: 2017-03-24
-def today():
+def get_act_date():
     return np.datetime64('today')
 # %%
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:02:00 óta. Int-el térjen vissza
