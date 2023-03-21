@@ -2,6 +2,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 # %%
 '''
@@ -20,7 +21,9 @@ függvény neve: csv_to_df
 '''
 
 # %%
-
+def csv_to_df(path):
+    df = pd.read_csv(path)
+    return df
 
 # %%
 '''
@@ -34,6 +37,10 @@ függvény neve: capitalize_columns
 '''
 
 # %%
+def capitalize_columns(df_data):
+    new_df = df_data.copy()
+    new_df.columns = map(lambda x: x.upper() if 'e' in x else x, new_df.columns)
+    return new_df
 
 
 # %%
@@ -49,6 +56,9 @@ függvény neve: math_passed_count
 
 # %%
 
+def math_passed_count(df_data):
+    new_df = df_data.copy()
+    return len(new_df[new_df['math score'] > 50])
 
 # %%
 '''
@@ -61,7 +71,10 @@ függvény neve: did_pre_course
 '''
 
 # %%
-
+def did_pre_course(df_data):
+    new_df = df_data.copy()
+    df_did_pre_course = new_df[new_df['test preparation course'] == 'completed']
+    return df_did_pre_course
 
 # %%
 '''
@@ -76,7 +89,11 @@ függvény neve: average_scores
 
 # %%
 
-
+def average_scores(df_data):
+    new_df = df_data.copy()
+    maths = new_df.groupby('parental level of education')['math score'].mean()
+    reading = new_df.groupby('parental level of education')['reading score'].mean()
+    writing = new_df.groupby('parental level of education')['writing score'].mean()
 # %%
 '''
 Készíts egy függvényt, ami a bementeti Dataframet kiegészíti egy 'age' oszloppal, töltsük fel random 18-66 év közötti értékekkel.
@@ -89,7 +106,14 @@ függvény neve: add_age
 '''
 
 # %%
+def add_age(df_data):
+    new_df = df_data.copy()
+    random.seed(42)
+    new_df['age'] = random.randint(18, 66)
+    return new_df
 
+
+# %%
 
 # %%
 '''
@@ -102,7 +126,10 @@ függvény neve: female_top_score
 '''
 
 # %%
-
+def female_top_score(df_data):
+    new_df = df_data.copy()
+    new_df[new_df['gender'] == 'female']
+    return new_df
 
 # %%
 '''
@@ -122,7 +149,6 @@ függvény neve: add_grade
 '''
 
 # %%
-
 
 # %%
 '''
@@ -179,3 +205,5 @@ függvény neve: ethnicity_pie_chart
 
 
 
+df = csv_to_df("C:\\Users\\hallgato\\Downloads\\StudentsPerformance.csv")
+print(add_age(df))
