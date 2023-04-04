@@ -27,6 +27,7 @@ class NJCleaner:
         new_df = self.data.copy()
         new_df['part_of_the_day'] = new_df['scheduled_time'].apply(get_part_of_the_day)
         new_df.drop('scheduled_time', axis=1)
+
         def get_part_of_the_day(time):
             if time > '19:59':
                 return 'night'
@@ -38,7 +39,7 @@ class NJCleaner:
                 return 'morning'
             elif time > '3:59':
                 return 'early_morning'
-            elif time < '23:59':
+            elif time < '4:00':
                 return 'late_night'
                
         return new_df
@@ -71,11 +72,12 @@ class NJCleaner:
         df.to_csv(path)
 
     def prep_df(self, path='data/NJ.cs'):
-        self.order_by_scheduled_time()
-        self.drop_columns_and_nan()
-        self.convert_date_to_day()
-        self.convert_scheduled_time_to_part_of_the_day()
-        self.convert_delay()
-        self.drop_unnecessary_columns()
-        self.save_first_60k(path)
+        self.data = self.order_by_scheduled_time()
+        self.data = self.drop_columns_and_nan()
+        self.data = self.convert_date_to_day()
+        self.data = self.convert_scheduled_time_to_part_of_the_day()
+        self.data = self.convert_delay()
+        self.data = self.drop_unnecessary_columns()
+        self.data = self.save_first_60k(path)
+        return self.data
 
