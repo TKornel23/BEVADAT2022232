@@ -62,7 +62,20 @@ Y = data.iloc[:, -1].values.reshape(-1, 1)
 X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y, test_size=.2, random_state=41)
 
-classifier = DecisionTreeClassifier(90, 11)
+classifier = DecisionTreeClassifier(69, 42)
 classifier.fit(X_train, Y_train)
 Y_pred = classifier.predict(X_test)
 print(accuracy_score(Y_test, Y_pred))
+
+##90:11 -> 80.3
+##100:5 -> 78.33
+##100:20 -> 79.74
+##150:50 -> 79.48
+##11:5 -> 78.9
+##300:200 -> 79.8
+##12:5 -> 78.9
+##69:42 -> 79.1
+#85:10 -> 80.1
+#90:12 -> 80.2
+
+#test size állítás nem hozott változást és max depth < 8 => error
