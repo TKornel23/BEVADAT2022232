@@ -24,9 +24,6 @@ class NJCleaner:
         return new_df
     
     def convert_scheduled_time_to_part_of_the_day(self):
-        new_df = self.data.copy()
-        new_df['part_of_the_day'] = new_df['scheduled_time'].apply(get_part_of_the_day)
-        new_df.drop('scheduled_time', axis=1)
 
         def get_part_of_the_day(time):
             if time > '19:59':
@@ -41,13 +38,17 @@ class NJCleaner:
                 return 'early_morning'
             elif time < '4:00':
                 return 'late_night'
+
+        new_df = self.data.copy()
+        new_df['part_of_the_day'] = new_df['scheduled_time'].apply(get_part_of_the_day)
+        new_df.drop('scheduled_time', axis=1)
+
+        
                
         return new_df
 
             
     def convert_delay(self):
-        new_df = self.data.copy()
-        new_df['delay'] = new_df['delay_minutes'].apply(get_delay)
 
         def get_delay(delay):
             if delay >= 5:
@@ -55,12 +56,15 @@ class NJCleaner:
             else:
                 return '0'
 
+        new_df = self.data.copy()
+        new_df['delay'] = new_df['delay_minutes'].apply(get_delay)        
+
         return new_df
     
     def drop_unnecessary_columns(self):
         new_df = self.data.copy()
         new_df.drop('train_id', axis=1)
-        new_df.drop('scheduled_time', axis=1)
+        #new_df.drop('scheduled_time', axis=1)
         new_df.drop('actual_time', axis=1)
         new_df.drop('delay_minutes', axis=1)
 
