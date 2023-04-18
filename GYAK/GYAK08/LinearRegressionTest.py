@@ -15,7 +15,7 @@ x_test, y_test = linearRegression.fit(x, y)
 
 y_pred = linearRegression.predict(x)
 
-print(y_pred)
+print(linearRegression.evaluate(x, y))
 
 plt.scatter(x_test, y_test)
 plt.plot([min(x_test), max(x_test)], [min(y_pred), max(y_pred)], color='red') # predicted

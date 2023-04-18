@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 
 
 class LinearRegression:
@@ -44,3 +45,7 @@ class LinearRegression:
 
         self.y_pred = self.m*self.x_test + self.c
         return self.y_pred
+    
+    def evaluate(self, x, y):
+        err = np.mean((self.y_pred - self.y_test) ** 2)
+        return f"Mean squared error: {err}"
