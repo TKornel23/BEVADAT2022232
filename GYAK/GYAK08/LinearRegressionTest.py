@@ -1,22 +1,20 @@
+
 from LinearRegressionSkeleton import LinearRegression
 import pandas as pd
+import numpy as np
 from sklearn.datasets import load_iris
-from matplotlib import pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
+from matplotlib import pyplot as plt
+lr = LinearRegression(epochs=5000)
 iris = load_iris()
 df = pd.DataFrame(iris.data, columns=iris.feature_names)
+X = df['petal width (cm)'].values
+Y = df['sepal length (cm)'].values
 
-x = df["petal width (cm)"].values
-y = df["sepal length (cm)"].values
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
 
-linearRegression = LinearRegression(df)
-
-x_test, y_test = linearRegression.fit(x, y)
-
-y_pred = linearRegression.predict(x)
-
-print(linearRegression.evaluate(x, y))
-
-plt.scatter(x_test, y_test)
-plt.plot([min(x_test), max(x_test)], [min(y_pred), max(y_pred)], color='red') # predicted
-plt.show()
+lr.fit(X_train,y_train)
+lr.predict(X_test)
+lr.plotRes(X_test,y_test)
